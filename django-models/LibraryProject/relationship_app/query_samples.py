@@ -40,3 +40,10 @@ if __name__ == "__main__":
     print("Books by Chinua Achebe:", books_by_author("Chinua Achebe"))
     print("Books in City Library:", books_in_library("City Library"))
     print("Librarian for City Library:", librarian_for_library("City Library"))
+
+
+# Class-based view to display library details
+class LibraryDetailView(DetailView):
+    model = Library
+    template_name = 'library_detail.html'
+    context_object_name = 'library'
