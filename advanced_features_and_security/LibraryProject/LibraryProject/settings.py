@@ -145,14 +145,14 @@ LOGOUT_REDIRECT_URL = 'login'
 
 
 # =========================
-# 🔒 Security Settings
+# 🔒 Security Settings (for HTTPS)
 # =========================
 
-# Redirect all HTTP to HTTPS
+# Redirect all HTTP traffic to HTTPS (effective in production)
 SECURE_SSL_REDIRECT = True  
 
 # HTTP Strict Transport Security (HSTS)
-SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS for 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  
 SECURE_HSTS_PRELOAD = True  
 
@@ -164,6 +164,9 @@ CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"  # Prevent clickjacking
 SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME-type sniffing
 SECURE_BROWSER_XSS_FILTER = True  # Enable XSS protection
+
+# Recognize HTTPS requests when behind a proxy (Heroku, Nginx, etc.)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # SECURITY SETTINGS
