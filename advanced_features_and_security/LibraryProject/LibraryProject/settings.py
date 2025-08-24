@@ -122,7 +122,33 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "bookshelf.CustomUser"
 
 
+# Security Headers
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Secure Cookies
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+# CSP (Content Security Policy) – optional if not using django-csp
+# Example: only allow scripts/styles from self and CDN
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "cdn.jsdelivr.net")
+CSP_STYLE_SRC = ("'self'", "cdn.jsdelivr.net")
+
+
 # ✅ Login and Logout Redirects
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'list_books'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+
+# SECURITY SETTINGS
+# DEBUG = False  -> Prevents sensitive info leakage
+# SECURE_BROWSER_XSS_FILTER = True -> Mitigates XSS
+# X_FRAME_OPTIONS = 'DENY' -> Prevents clickjacking
+# SECURE_CONTENT_TYPE_NOSNIFF = True -> Prevents MIME sniffing
+# CSRF_COOKIE_SECURE & SESSION_COOKIE_SECURE = True -> Only send cookies over HTTPS
+# CSP -> Restricts allowed domains for loading resources
